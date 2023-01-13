@@ -1,29 +1,31 @@
-import { useState } from "react";
-import { TodoType } from "./types";
 import { TodoList } from "./TodoList";
 import { TodoInput } from "./TodoInput";
 
-const Todo = () => {
-  const [todos, setTodos] = useState<TodoType[]>([]);
+import "./Todo.css";
+import { useTodos } from "./useTodos";
+import { TodoType } from "./types";
+import { Aggregation } from "./Aggregation";
 
-  const onItemAdded = (todo: TodoType) => {
-    setTodos([todo, ...todos]);
-  };
-
-  const onToggleItem = (todo: TodoType) => {
-    setTodos(todos.map(item => {
-      if(item.id === todo.id) {
-        return ({...item, completed: !item.completed})
-      }
-      return item;
-    }))
-  }
+const Todo = ({ items }: { items?: TodoType[] }) => {
+  const {
+    displayTodos,
+    aggregation,
+    addTodo,
+    deleteTodo,
+    toggleTodo,
+    switchCategory,
+  } = useTodos(items);
 
   return (
-    <div>
+    <div className="todo-container">
       <h2>todos</h2>
-      <TodoInput onItemAdded={onItemAdded} />
-      <TodoList todos={todos} onToggleItem={onToggleItem} />
+      <TodoInput onItemAdded={addTodo} />
+      <Aggregation aggregation={aggregation} switchCategory={switchCategory} />
+      <TodoList
+        todos={displayTodos}
+        onToggleItem={toggleTodo}
+        onDeleteItem={deleteTodo}
+      />
     </div>
   );
 };

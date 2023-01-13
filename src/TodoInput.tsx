@@ -22,6 +22,7 @@ export const TodoInput = ({
 
   return (
     <input
+      className="todo-input"
       type="text"
       data-testid="todo-input"
       onChange={handleChange}

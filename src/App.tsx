@@ -2,10 +2,27 @@ import React from "react";
 import "./App.css";
 import {Todo} from "./Todo";
 
+const items = [
+  {
+    id: "1",
+    content: "buy some milk",
+    completed: false
+  },
+  {
+    id: "2",
+    content: "learn react",
+    completed: true
+  },
+  {
+    id: "3",
+    content: "clean the house",
+    completed: false
+  }
+]
+
 function App() {
   return <div className="App">
-    learn react
-    <Todo />
+    <Todo items={items} />
   </div>;
 }
 
