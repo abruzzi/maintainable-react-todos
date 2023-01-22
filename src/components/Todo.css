@@ -4,6 +4,7 @@
 }
 
 .todo-input {
+  border-radius: 6px;
   width: 100%;
   padding: 0.8rem 1rem;
   font-size: 1.2rem;
@@ -15,6 +16,7 @@
 }
 
 .todo-item {
+  border-radius: 6px;
   background-color: #efefef;
   border: 1px solid #efefef;
   padding: 0.8rem 1rem;
