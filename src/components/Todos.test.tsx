@@ -1,6 +1,7 @@
 import {render, screen, within} from "@testing-library/react";
 import { Todo } from "./Todo";
 import userEvent from "@testing-library/user-event";
+import {keyboard} from "@testing-library/user-event/dist/keyboard";
 
 describe('Todos application', () => {
   it('renders the title', () => {
@@ -177,6 +178,44 @@ describe('Todos application', () => {
       userEvent.type(input, 'buy');
 
       expect(screen.getAllByTestId('todo-item').length).toEqual(2);
+    })
+  })
+
+  describe('keyboard shortcuts', () => {
+    const items = [
+      {
+        id: "1",
+        content: "buy some milk",
+        completed: false
+      },
+      {
+        id: "2",
+        content: "learn react",
+        completed: true
+      },
+      {
+        id: "3",
+        content: "buy a coffee",
+        completed: false
+      }
+    ];
+
+    it('focus on todo input box', () => {
+      render(<Todo items={items} />);
+
+      keyboard('{Meta}{K}');
+
+      const input = screen.getByTestId('todo-input');
+      expect(input).toHaveFocus();
+    })
+
+    it('focus on search box', () => {
+      render(<Todo items={items} />);
+
+      keyboard('{Meta}{S}');
+
+      const input = screen.getByTestId('search-input');
+      expect(input).toHaveFocus();
     })
   })
 })

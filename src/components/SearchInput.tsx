@@ -1,5 +1,5 @@
-import {ChangeEvent, useEffect, useRef} from "react";
-import {useCommandAndKey} from "../hooks/useCommandAndKey";
+import { ChangeEvent } from "react";
+import { useCommandAndKey } from "../hooks/useCommandAndKey";
 
 export const SearchInput = ({
   performSearch,
